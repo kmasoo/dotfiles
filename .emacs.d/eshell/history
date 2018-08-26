@@ -1,0 +1,111 @@
+sudo /etc/auto.misc 
+sudo emacs /etc/auto.misc 
+sudo /etc/init.d/autofs restart
+ssh hiroto@192.168.1.4
+cat autofs.misc
+ls
+cat auto.misc
+sudo emacs auto.misc
+exit
+sudo apt-get update
+sudo apt-get upgrade
+deb-multimedia-keyring を展開し、置換しています...
+man ati
+man radeon
+lspci
+sudo apt-spy
+sudo: apt-spy: コマンドが見つかりません
+sudo apt-get install apt-spy
+(.../apt-spy_3.2.2-1_amd64.deb から) apt-spy を展開しています...
+sudo apt-spy update
+debconf: (Dialog フロントエンドはダムターミナル、emacs のシェルバッファ、もしくはユーザが制御しているターミナルではない場合には動作しません。)
+find /* | egrep mirrors
+sudo find /* | egrep mirrors
+sudo emacs /var/cache/apt/mirrors.txt 
+ls
+cd /var/cache/apt
+ls 
+ls -al
+cd /etc/apt
+ls -al
+cd sources.list.d
+ls -al
+cd ..
+ls -al
+cat sources.list
+ls
+sudo cp sources.list sources.list_orig
+ls -al
+sudo apt-spy -s jp -d wheezy /etc/apt/sources.list -m /var/cache/apt/mirrors.txt 
+h
+history
+sudo apt-spy -s jp -d wheezy -o /etc/apt/sources.list/ -m /var/cache/apt/mirrors.txt 
+34  ls -al
+sudo apt-spy -s jp -d wheezy
+man apt-spy
+34: command not found
+cd
+ls
+sudo dpkg --get-selections > dpkg.list
+ls
+exit
+irb
+ri Array
+quit
+exit
+emacsclient -e '(kill-emacs)'
+ruby test01.rb 
+ruby ex0701.rb 
+ruby ex0702.rb
+ruby ex0703.rb
+ruby ex0704.rb
+ruby ex0713.rb
+ruby ex0714.rb
+ruby ex0715.rb 
+ruby ex0715.rb
+ruby ex0715.rb 
+ruby ex0715.rb 
+ruby ex0715.rb
+ruby ex0716.rb
+ruby ex0716.rb 
+ruby ex0716.rb
+ruby ex0717.rb
+ruby ex0717.rb
+ruby ex0801.rb
+ruby ex0802.rb
+Ruby逆引きハンドブックexit
+exit
+ls
+exit
+sudo apt update
+sudo apt upgrade
+exit
+ls
+rails books
+rails new books
+ls
+cd books
+ls
+rails s
+rails generate controller booklist
+rails generate controller booklist
+rails s
+If you want to expose your action to GET, use `get` in the router:
+rails s
+cd prj/
+ls
+cd railsapp/
+ls
+cd books/
+ls
+rails s
+ls
+cd ..
+ls
+rails new books
+cd books/
+ls
+rails generate controller booklist
+rails s
+rails s
+exit
