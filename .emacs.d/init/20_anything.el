@@ -7,7 +7,7 @@
 ;; emacswikiのmirrorの方を使う https://github.com/emacsmirror/emacswiki.org/blob/master/anything.el
 
 
-;;(require 'anything-startup)
+(require 'anything-startup)
 
 (require 'anything-config)
 (setq anything-enable-shortcuts 'prefix)
@@ -18,13 +18,9 @@
 (define-key global-map (kbd "C-c i")   'anything-imenu)
 (define-key global-map (kbd "C-c h")   'anything-mini)
 (define-key global-map (kbd "C-x b")   'anything-buffers-list)
-;;(define-key helm-map (kbd "C-h") 'delete-backward-char);
-;;(define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
-;;(define-key helm-find-files-map (kbd "TAB") 'anything-execute-persistent-action)
-;;(define-key helm-read-file-map (kbd "TAB") 'anything-execute-persistent-action)
 
 
-(require 'anything-match-plugin)
+;;(require 'anything-match-plugin)
 
 
 ;; anything-for-document
