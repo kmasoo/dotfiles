@@ -30,7 +30,6 @@
 (setq initial-frame-alist
       (append (list
         '(width .  95)
-;;        '(width .  120)
         '(height . 35)
         )
         initial-frame-alist))
@@ -39,27 +38,6 @@
 ;;---------------------------------------------------------------------- 
 ;;; Fonts setting
 ;;---------------------------------------------------------------------- 
-
-;; Ricty Discord
-;; (cond (window-system
-;; (set-face-attribute 'default nil
-;;                     :family "Ricty Discord"
-;;                     :height 120)
-;; (set-fontset-font (frame-parameter nil 'font)
-;;                   'japanese-jisx0208
-;;                   (cons "Ricty Discord" "iso10646-1"))
-;; (set-fontset-font (frame-parameter nil 'font)
-;;                   'japanese-jisx0212
-;;                   (cons "Ricty Discord" "iso10646-1"))
-;; (set-fontset-font (frame-parameter nil 'font)
-;;                   'katakana-jisx0201
-;;                   (cons "Ricty Discord" "iso10646-1"))
-;; (setq w32-enable-synthesized-fonts t)
-
-;; (add-to-list 'face-font-rescale-alist
-;;              `(,(encode-coding-string "Ricty Discord" 'emacs-mule) . 0.9))
-;; ))
-
 
 ;; Ricty
 (cond (window-system
@@ -129,12 +107,6 @@
 ;;  nil 'japanese-jisx0208
 ;;  (font-spec :family "Ricty"))
 
-;; 同様のフォント設定があればコメントアウトしておくべき
-;; (set-frame-font "Ricty-12")
-;; (set-frame-font "Ricty-13")
-;; (set-frame-font "ricty-15")
-;; (add-to-list 'default-frame-alist '(font . "Ricty-13.5"))
-
 ;;---------------------------------------------------------------------- 
 ;;;フレームに関する設定
 ;;---------------------------------------------------------------------- 
@@ -179,39 +151,6 @@
 
 ;;; 行末の空白を表示
 (setq-default show-trailing-whitespace t)
-
-;; ;;; 現在行を目立たせる
-;; (defface hlline-face
-;;   '((((class color)
-;;       (background dark))
-;;      ;;(:background "dark state gray"))
-;;      (:background "white smoke"
-;;                   :underline "light gray"))
-;;     (((class color)
-;;       (background light))
-;;      (:background "white smoke"
-;;                   :underline "light gray"))
-;;     (t ()))
-;;   "*Face used by hl-line.")
-;; (setq hl-line-face 'hlline-face)
-;; ;;(setq hl-line-face 'underline)
-;; (global-hl-line-mode)
-
-;; (defface hlline-face
-;;   '((((class color)
-;;       (background dark))
-;;      ;;(:background "dark state gray"))
-;;      (:background "gray10"
-;;                   :underline "gray24"))
-;;     (((class color)
-;;       (background light))
-;;      (:background "gray10"
-;;                   :underline "gray24"))
-;;     (t ()))
-;;   "*Face used by hl-line.")
-;; (setq hl-line-face 'hlline-face)
-;; ;;(setq hl-line-face 'underline)
-;; (global-hl-line-mode)
 
 
 ;;; 行の先頭をC-kを一回押すだけで行全体を表示する
@@ -305,49 +244,6 @@
 
 ;;; 行末の空白を表示
 (setq-default show-trailing-whitespace t) 
-
-;; ;;; 現在行を目立たせる
-;; (defface hlline-face
-;;   '((((class color)
-;;       (background dark))
-;;      ;;(:background "dark state gray"))
-;;      (:background "white smoke"
-;;                   :underline "light gray"))
-;;     (((class color)
-;;       (background light))
-;;      (:background "white smoke"
-;;                   :underline "light gray"))
-;;     (t ()))
-;;   "*Face used by hl-line.")
-;; (setq hl-line-face 'hlline-face)
-;; ;;(setq hl-line-face 'underline)
-;; (global-hl-line-mode)
-
-;; (defface hlline-face
-;;   '((((class color)
-;;       (background dark))
-;;      ;;(:background "dark state gray"))
-;;      (:background "gray10"
-;;                   :underline "gray24"))
-;;     (((class color)
-;;       (background light))
-;;      (:background "gray10"
-;;                   :underline "gray24"))
-;;     (t ()))
-;;   "*Face used by hl-line.")
-;; (setq hl-line-face 'hlline-face)
-;; ;;(setq hl-line-face 'underline)
-;; (global-hl-line-mode)
-
-
-;;; 行の先頭をC-kを一回押すだけで行全体を表示する
-;;; (setq kill-whole-line t)
-
-;;; 最終行に必ず一行挿入する
-;; (setq require-final-newline t)
-
-;;; バッファの最後でnewlineで新規行を追加するのを禁止する
-;; (setq next-line-add-newlines nil)
 
 ;; server start for emacs-client
 

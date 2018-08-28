@@ -1,304 +1,304 @@
-((("match" .
-   [1 0 0 1 0])
-  ("load-path" .
-   [1 0 0 0 0 0 0 0 0])
-  ("DVI-0" .
-   [1 0 0 0 0])
-  ("1920x1080" .
-   [1 0 0 0 0 0 0 0 0])
-  ("signal" .
+((("interactive" .
+   [0 0 0 0 0 0 0 0 1 0 0])
+  ("symbol" .
    [1 0 0 0 0 0])
-  ("taguchi:" .
-   [1 0 0 0 0 0 0 0])
-  (":taguchi" .
-   [1 0 0 0 0 0 0 0])
-  ("size" .
+  ("thing-at-point" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 1])
+  ("anything-for-document-sources" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0])
+  ("anything-for-document" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0])
+  ("anything-c-source-apropos-emacs-variables" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("anything-c-source-apropos-emacs-functions" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("anything-c-source-apropos-emacs-commands" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("anything-c-source-info-elisp" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0])
+  ("anything-c-source-info-cl" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0])
+  ("anything-c-source-man-pages" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0])
+  ("list" .
    [1 0 0 0])
-  ("fkoji" .
-   [2 0 0 0 0])
-  ("scores" .
-   [9 0 0 0 0 0])
-  ("colors" .
-   [12 0 0 0 0 0])
-  ("upcase" .
+  ("anything-document-" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1])
+  ("anything" .
+   [3 0 0 0 0 0 1 0])
+  ("text" .
+   [1 0 0 0])
+  ("render" .
    [1 0 0 0 0 0])
-  ("name" .
-   [8 0 0 0])
-  ("join" .
+  ("auto-package-update-maybe" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("root" .
    [1 0 0 0])
-  ("entry" .
-   [3 0 0 2 0])
-  ("entries" .
-   [3 0 0 0 0 0 0])
-  ("target" .
-   [0 0 0 2 0 0])
-  ("ARGV" .
-   [0 0 1 0])
-  ("skk-tutorial" .
-   [0 0 0 0 0 0 1 0 0 0 0 0])
-  ("skk-auto-fill-mode" .
-   [0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0])
-  ("multi-term-program" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0])
-  ("multi-term" .
-   [1 0 0 0 0 0 0 0 0 0])
-  ("ruby-mode-hooks" .
-   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
-  ("child" .
-   [2 0 0 0 0])
-  ("Child" .
-   [1 0 0 0 0])
-  ("Parent" .
-   [1 0 0 0 0 0])
-  ("cvar_in_class_method" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0])
-  ("MyClass_cvar" .
-   [0 0 0 0 0 0 0 0 2 0 0 0])
-  ("cvar_in_method" .
-   [0 0 0 0 1 1 0 1 0 0 0 0 0 0])
-  ("cvar" .
-   [4 0 0 0])
-  ("ruby-mode-hook" .
-   [2 0 0 0 0 0 0 0 0 0 0 0 0 0])
-  ("add-hook" .
-   [2 0 0 0 0 0 0 0])
-  ("ruby-electric-mode" .
-   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
-  ("inf-ruby-keys" .
-   [1 0 0 0 0 0 0 0 0 0 0 0 0])
-  ("ruby" .
-   [1 0 0 0])
-  ("defun" .
-   [3 0 0 0 0])
-  ("run-ruby" .
-   [1 0 0 0 0 0 0 0])
-  ("autoload" .
-   [2 0 0 0 0 0 0 0])
-  ("setq" .
-   [4 0 0 0])
-  ("ruby-block" .
-   [1 0 0 0 0 0 0 0 0 0])
-  ("when" .
-   [4 0 0 0])
-  ("nil" .
-   [9 0 0])
-  ("ruby-electric" .
-   [1 0 0 0 0 0 0 0 0 0 0 0 0])
-  ("require" .
-   [5 0 0 0 0 0 0])
-  ("display_length" .
-   [0 0 2 0 0 0 0 0 0 0 0 0 0 0])
-  ("new" .
-   [6 0 1])
-  ("Ruler2" .
-   [1 0 0 0 0 0])
-  ("ruler" .
-   [4 0 0 0 0])
-  ("Ruller" .
-   [1 0 0 0 0 0])
-  ("def" .
-   [0 0 1])
-  ("length" .
-   [10 0 2 1 1 0])
-  ("my_object" .
-   [0 0 0 2 1 0 0 0 0])
-  ("MyClass" .
-   [1 0 2 1 0 0 0])
-  ("hello" .
-   [4 0 0 0 0])
-  ("HELLO" .
-   [0 0 0 0 4])
-  ("val" .
-   [3 0 0])
-  ("str" .
-   [0 0 2])
-  ("Ping" .
-   [2 0 0 0])
-  ("each" .
-   [1 0 0 0])
-  ("names" .
-   [1 0 0 0 0])
-  ("compinit" .
-   [1 0 0 0 0 0 0 0])
-  ("window-system" .
-   [0 0 0 0 0 0 0 0 0 1 0 0 0])
-  ("cond" .
-   [1 0 0 0])
-  ("anything-imenu" .
-   [1 0 0 0 0 0 0 0 0 0 0 0 0 0])
-  ("prin1" .
-   [1 0 0 0 0])
-  ("font-family-list" .
-   [0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0])
-  ("skk-mode" .
-   [1 0 0 0 0 0 0 0])
-  ("last-command" .
-   [1 0 0 0 0 0 0 0 0 0 0 0])
-  ("attr_accessor:length" .
-   [1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
-  ("self" .
-   [0 0 1 0])
-  ("Ruler3" .
-   [4 0 0 0 0 0])
-  ("ruler3" .
-   [2 0 0 0 0 0])
-  ("set_default_length" .
-   [0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0])
-  ("ruler2" .
-   [5 0 0 0 0 0])
-  ("pair" .
-   [1 0 0 0])
-  ("num" .
-   [5 0 0])
-  ("koubai5_4" .
-   [0 0 0 0 0 1 0 0 0])
-  ("koubai6_5" .
-   [0 0 0 0 0 1 0 0 0])
-  ("koubai7_6" .
-   [0 0 0 0 0 0 1 0 0])
-  ("TEISUU" .
-   [3 0 0 0 0 0])
-  ("BEG" .
-   [4 0 0])
-  ("filename" .
-   [2 0 0 0 0 0 0 0])
-  ("file" .
-   [3 0 0 0])
-  ("File" .
-   [1 0 0 0])
-  ("each_line" .
-   [1 0 0 0 0 0 0 0 0])
-  ("line" .
-   [3 0 0 0])
-  ("pattern" .
-   [1 0 0 0 0 0 0])
-  ("print" .
-   [1 0 0 0 0])
-  ("close" .
-   [1 0 0 0 0])
-  ("title" .
-   [5 0 0 0 0])
-  ("henkan" .
-   [3 0 0 0 0 0])
-  ("titledata" .
-   [1 0 0 0 0 0 0 0 0])
-  ("ttl" .
-   [1 0 0])
-  ("color-theme" .
-   [1 0 0 0 0 0 0 0 0 0 0])
-  ("vsc" .
-   [1 0 0])
-  ("index" .
-   [1 0 0 0 0])
-  ("all" .
-   [1 0 0])
-  ("skk" .
-   [1 0 0])
-  ("--exclude" .
-   [0 0 1 0 0 0 0 0 0])
-  ("czf" .
-   [1 0 0])
-  ("/mnt/hdd01/download/home_bk_" .
-   [0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
-  ("date" .
-   [2 0 0 0])
-  (".tar.gz" .
-   [0 0 0 0 1 0 0])
-  ("+%Y%m%d" .
-   [1 0 0 0 0 0 0])
-  ("BACKDATE" .
-   [1 0 0 0 1 0 0 0])
-  ("BACKUPDATE.tar.gz" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0])
-  ("msg" .
-   [3 0 0])
-  ("VERSION" .
-   [0 0 1 1 2 0 0])
-  ("pust" .
-   [1 0 0 0])
-  ("Rational" .
-   [1 0 0 0 0 0 0 0])
-  ("unless" .
-   [1 0 0 0 0 0])
-  ("server-clients" .
-   [1 0 0 0 0 0 0 0 0 0 0 0 0 0])
-  ("iconify-frame" .
-   [1 0 0 0 0 0 0 0 0 0 0 0 0])
-  ("server-done-hook" .
-   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
-  ("iconify-emacs-when-server-is-done" .
-   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
-  ("global-set-key" .
-   [0 0 0 0 0 0 0 0 0 1 0 0 0 0])
-  ("kbd" .
-   [1 0 0])
-  ("server-edit" .
-   [1 0 0 0 0 0 0 0 0 0 0])
-  ("defalias" .
-   [0 0 0 0 0 1 0 0])
-  ("save-buffers-kill-emacs" .
-   [0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
-  ("AUTH_PW" .
-   [1 0 0 0 0 0 0])
-  ("sudo" .
-   [2 0 0 0])
-  ("spawn" .
-   [1 0 0 0 0])
-  ("env" .
-   [1 0 0])
-  ("LANG" .
-   [0 0 0 1])
-  ("openvpn" .
-   [1 0 0 0 0 0 0])
-  ("VPNSVR" .
-   [1 0 0 0 0 0])
-  ("expect" .
-   [4 0 0 0 0 0])
-  ("send" .
-   [3 0 0 0])
-  ("exp_continue" .
-   [0 0 0 1 2 0 0 0 0 0 0 0])
-  ("CNTRY" .
-   [1 0 0 0 0])
-  ("puts" .
+  ("html" .
    [1 0 0 0])
   ("sleep" .
    [2 0 0 0 0])
-  ("html" .
+  ("puts" .
    [1 0 0 0])
-  ("root" .
-   [1 0 0 0])
-  ("auto-package-update-maybe" .
-   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
-  ("render" .
+  ("CNTRY" .
+   [1 0 0 0 0])
+  ("exp_continue" .
+   [0 0 0 1 2 0 0 0 0 0 0 0])
+  ("send" .
+   [3 0 0 0])
+  ("expect" .
+   [4 0 0 0 0 0])
+  ("VPNSVR" .
    [1 0 0 0 0 0])
-  ("text" .
-   [1 0 0 0])
-  ("anything" .
-   [3 0 0 0 0 0 1 0])
-  ("anything-document-" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1])
-  ("list" .
-   [1 0 0 0])
-  ("anything-c-source-man-pages" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0])
-  ("anything-c-source-info-cl" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0])
-  ("anything-c-source-info-elisp" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0])
-  ("anything-c-source-apropos-emacs-commands" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
-  ("anything-c-source-apropos-emacs-functions" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
-  ("anything-c-source-apropos-emacs-variables" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
-  ("anything-for-document" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0])
-  ("anything-for-document-sources" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0])
-  ("thing-at-point" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 1])
-  ("symbol" .
+  ("openvpn" .
+   [1 0 0 0 0 0 0])
+  ("LANG" .
+   [0 0 0 1])
+  ("env" .
+   [1 0 0])
+  ("spawn" .
+   [1 0 0 0 0])
+  ("sudo" .
+   [2 0 0 0])
+  ("AUTH_PW" .
+   [1 0 0 0 0 0 0])
+  ("save-buffers-kill-emacs" .
+   [0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("defalias" .
+   [0 0 0 0 0 1 0 0])
+  ("server-edit" .
+   [1 0 0 0 0 0 0 0 0 0 0])
+  ("kbd" .
+   [1 0 0])
+  ("global-set-key" .
+   [0 0 0 0 0 0 0 0 0 1 0 0 0 0])
+  ("iconify-emacs-when-server-is-done" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("server-done-hook" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("iconify-frame" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("server-clients" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("unless" .
    [1 0 0 0 0 0])
-  ("interactive" .
-   [0 0 0 0 0 0 0 0 1 0 0])))
+  ("Rational" .
+   [1 0 0 0 0 0 0 0])
+  ("pust" .
+   [1 0 0 0])
+  ("VERSION" .
+   [0 0 1 1 2 0 0])
+  ("msg" .
+   [3 0 0])
+  ("BACKUPDATE.tar.gz" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0])
+  ("BACKDATE" .
+   [1 0 0 0 1 0 0 0])
+  ("+%Y%m%d" .
+   [1 0 0 0 0 0 0])
+  (".tar.gz" .
+   [0 0 0 0 1 0 0])
+  ("date" .
+   [2 0 0 0])
+  ("/mnt/hdd01/download/home_bk_" .
+   [0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("czf" .
+   [1 0 0])
+  ("--exclude" .
+   [0 0 1 0 0 0 0 0 0])
+  ("skk" .
+   [1 0 0])
+  ("all" .
+   [1 0 0])
+  ("index" .
+   [1 0 0 0 0])
+  ("vsc" .
+   [1 0 0])
+  ("color-theme" .
+   [1 0 0 0 0 0 0 0 0 0 0])
+  ("ttl" .
+   [1 0 0])
+  ("titledata" .
+   [1 0 0 0 0 0 0 0 0])
+  ("henkan" .
+   [3 0 0 0 0 0])
+  ("title" .
+   [5 0 0 0 0])
+  ("close" .
+   [1 0 0 0 0])
+  ("print" .
+   [1 0 0 0 0])
+  ("pattern" .
+   [1 0 0 0 0 0 0])
+  ("line" .
+   [3 0 0 0])
+  ("each_line" .
+   [1 0 0 0 0 0 0 0 0])
+  ("File" .
+   [1 0 0 0])
+  ("file" .
+   [3 0 0 0])
+  ("filename" .
+   [2 0 0 0 0 0 0 0])
+  ("BEG" .
+   [4 0 0])
+  ("TEISUU" .
+   [3 0 0 0 0 0])
+  ("koubai7_6" .
+   [0 0 0 0 0 0 1 0 0])
+  ("koubai6_5" .
+   [0 0 0 0 0 1 0 0 0])
+  ("koubai5_4" .
+   [0 0 0 0 0 1 0 0 0])
+  ("num" .
+   [5 0 0])
+  ("pair" .
+   [1 0 0 0])
+  ("ruler2" .
+   [5 0 0 0 0 0])
+  ("set_default_length" .
+   [0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0])
+  ("ruler3" .
+   [2 0 0 0 0 0])
+  ("Ruler3" .
+   [4 0 0 0 0 0])
+  ("self" .
+   [0 0 1 0])
+  ("attr_accessor:length" .
+   [1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("last-command" .
+   [1 0 0 0 0 0 0 0 0 0 0 0])
+  ("skk-mode" .
+   [1 0 0 0 0 0 0 0])
+  ("font-family-list" .
+   [0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0])
+  ("prin1" .
+   [1 0 0 0 0])
+  ("anything-imenu" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("cond" .
+   [1 0 0 0])
+  ("window-system" .
+   [0 0 0 0 0 0 0 0 0 1 0 0 0])
+  ("compinit" .
+   [1 0 0 0 0 0 0 0])
+  ("names" .
+   [1 0 0 0 0])
+  ("each" .
+   [1 0 0 0])
+  ("Ping" .
+   [2 0 0 0])
+  ("str" .
+   [0 0 2])
+  ("val" .
+   [3 0 0])
+  ("HELLO" .
+   [0 0 0 0 4])
+  ("hello" .
+   [4 0 0 0 0])
+  ("MyClass" .
+   [1 0 2 1 0 0 0])
+  ("my_object" .
+   [0 0 0 2 1 0 0 0 0])
+  ("length" .
+   [10 0 2 1 1 0])
+  ("def" .
+   [0 0 1])
+  ("Ruller" .
+   [1 0 0 0 0 0])
+  ("ruler" .
+   [4 0 0 0 0])
+  ("Ruler2" .
+   [1 0 0 0 0 0])
+  ("new" .
+   [6 0 1])
+  ("display_length" .
+   [0 0 2 0 0 0 0 0 0 0 0 0 0 0])
+  ("require" .
+   [5 0 0 0 0 0 0])
+  ("ruby-electric" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("nil" .
+   [9 0 0])
+  ("when" .
+   [4 0 0 0])
+  ("ruby-block" .
+   [1 0 0 0 0 0 0 0 0 0])
+  ("setq" .
+   [4 0 0 0])
+  ("autoload" .
+   [2 0 0 0 0 0 0 0])
+  ("run-ruby" .
+   [1 0 0 0 0 0 0 0])
+  ("defun" .
+   [3 0 0 0 0])
+  ("ruby" .
+   [1 0 0 0])
+  ("inf-ruby-keys" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("ruby-electric-mode" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("add-hook" .
+   [2 0 0 0 0 0 0 0])
+  ("ruby-mode-hook" .
+   [2 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("cvar" .
+   [4 0 0 0])
+  ("cvar_in_method" .
+   [0 0 0 0 1 1 0 1 0 0 0 0 0 0])
+  ("MyClass_cvar" .
+   [0 0 0 0 0 0 0 0 2 0 0 0])
+  ("cvar_in_class_method" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0])
+  ("Parent" .
+   [1 0 0 0 0 0])
+  ("Child" .
+   [1 0 0 0 0])
+  ("child" .
+   [2 0 0 0 0])
+  ("ruby-mode-hooks" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("multi-term" .
+   [1 0 0 0 0 0 0 0 0 0])
+  ("multi-term-program" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0])
+  ("skk-auto-fill-mode" .
+   [0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0])
+  ("skk-tutorial" .
+   [0 0 0 0 0 0 1 0 0 0 0 0])
+  ("ARGV" .
+   [0 0 1 0])
+  ("target" .
+   [0 0 0 2 0 0])
+  ("entries" .
+   [3 0 0 0 0 0 0])
+  ("entry" .
+   [3 0 0 2 0])
+  ("join" .
+   [1 0 0 0])
+  ("name" .
+   [8 0 0 0])
+  ("upcase" .
+   [1 0 0 0 0 0])
+  ("colors" .
+   [12 0 0 0 0 0])
+  ("scores" .
+   [9 0 0 0 0 0])
+  ("fkoji" .
+   [2 0 0 0 0])
+  ("size" .
+   [1 0 0 0])
+  (":taguchi" .
+   [1 0 0 0 0 0 0 0])
+  ("taguchi:" .
+   [1 0 0 0 0 0 0 0])
+  ("signal" .
+   [1 0 0 0 0 0])
+  ("1920x1080" .
+   [1 0 0 0 0 0 0 0 0])
+  ("DVI-0" .
+   [1 0 0 0 0])
+  ("load-path" .
+   [1 0 0 0 0 0 0 0 0])
+  ("match" .
+   [1 0 0 1 0])))
