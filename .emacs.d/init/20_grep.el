@@ -1,7 +1,10 @@
 ;;---------------------------------------------------------------------- 
 ;;; grep
 ;;---------------------------------------------------------------------- 
-(require 'grep)
+(use-package grep
+;;(require 'grep)
+:ensure t
+:config
 (setq grep-command-before-query "grep -nH -r -e ")
 (defun grep-default-command ()
   (if current-prefix-arg
@@ -16,7 +19,7 @@
               (+ (length grep-command-before-target) 1)))
     (car grep-command)))
 (setq grep-command (cons (concat grep-command-before-query " .")
-                         (+ (length grep-command-before-query) 1)))
+                         (+ (length grep-command-before-query) 1))))
 
 
 ;;---------------------------------------------------------------------- 
@@ -29,5 +32,8 @@
 ;; 3 良い感じに編集する
 ;; 4 C-c C-c で編集を反映する or C-c C-k で破棄する
 ;; 5 編集を反映してもファイル自体は保存されないので、保存する
-(require 'wgrep nil t)
+(use-package wgrep
+  :ensure t
+  )
+;;(require 'wgrep nil t)
 

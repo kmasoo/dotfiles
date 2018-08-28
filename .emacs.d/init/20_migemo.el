@@ -2,7 +2,10 @@
 ;;; migemo
 ;;---------------------------------------------------------------------- 
 
-(require 'migemo)
+(use-package migemo
+  ;; (require 'migemo)
+:ensure t
+:config
 (setq migemo-command "cmigemo")
 (setq migemo-options '("-q" "--emacs"))
 
@@ -13,4 +16,4 @@
 (setq migemo-regex-dictionary nil)
 (setq migemo-coding-system 'utf-8-unix)
 (load-library "migemo")
-(migemo-init)
+(migemo-init))
