@@ -7,7 +7,7 @@
 ;; emacswikiのmirrorの方を使う https://github.com/emacsmirror/emacswiki.org/blob/master/anything.el
 
 
-(require 'anything-startup)
+;;(require 'anything-startup)
 
 (require 'anything-config)
 (setq anything-enable-shortcuts 'prefix)
