@@ -21,21 +21,17 @@
 (use-package anzu
 ;;(require 'anzu)
   :ensure t
+  :init
+  (global-anzu-mode +1)
+
   :config
-  )
-(global-anzu-mode +1)
+  (setq anzu-deactivate-region t)
+  (setq anzu-search-threshold 1000)
+  (setq anzu-use-migemo t)
+  (setq anzu-minimum-input-length 3)
 
-;; (custom-set-variables
-;;  '(anzu-mode-lighter "")
-;;  '(anzu-deactivate-region t)
-;;  '(anzu-search-threshold 1000))
 
-(setq anzu-deactivate-region t)
-(setq anzu-search-threshold 1000)
+  ;; 置換コマンド
+  (global-set-key (kbd "C-c r") 'anzu-query-replace)
+  (global-set-key (kbd "C-c R") 'anzu-query-replace-regexp))
 
-(setq anzu-use-migemo t)
-(setq anzu-minimum-input-length 3)
-
-;; 置換コマンド
-(global-set-key (kbd "C-c r") 'anzu-query-replace)
-(global-set-key (kbd "C-c R") 'anzu-query-replace-regexp)

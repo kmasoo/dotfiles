@@ -57,24 +57,42 @@
 ;; org-modeでは，検索した結果などについて，不要な部分を折りたたんだスパース木の形で表示することができる．
 ;; C-c / /	正規表現で検索した結果をスパース木表示
 
-(require 'org)
+;;(require 'org)
+(use-package org
+  :ensure
+  :config
+  (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+  (setq org-log-done t)
+  ;; org-modeでの強調表示を可能にする
+  (add-hook 'org-mode-hook 'turn-on-font-lock)
+  ;; 見出しの余分な*を消す
+  (setq org-hide-leading-stars t)
+  ;; org-default-notes-fileのディレクトリ
+  (setq org-directory "~/org/")
+  ;; org-default-notes-fileのファイル名
+  (setq org-default-notes-file "notes.org")
 
-;; キーバインドの設定
-(define-key global-map "\C-cl" 'org-store-link)
-(define-key global-map "\C-ca" 'org-agenda)
-(define-key global-map "\C-cr" 'org-remember)
+  :bind
+  ("C-c l" . org-store-link)
+  ("C-c a" . org-agenda)
+  ("C-c r" . org-remember)
+)
+;; ;; キーバインドの設定
+;; (define-key global-map "\C-cl" 'org-store-link)
+;; (define-key global-map "\C-ca" 'org-agenda)
+;; (define-key global-map "\C-cr" 'org-remember)
 
-(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
-(define-key global-map "\C-cl" 'org-store-link)
-(define-key global-map "\C-ca" 'org-agenda)
-(setq org-log-done t)
-;; org-modeでの強調表示を可能にする
-(add-hook 'org-mode-hook 'turn-on-font-lock)
-;; 見出しの余分な*を消す
-(setq org-hide-leading-stars t)
-;; org-default-notes-fileのディレクトリ
-(setq org-directory "~/org/")
-;; org-default-notes-fileのファイル名
-(setq org-default-notes-file "notes.org")
+;; (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+;; (define-key global-map "\C-cl" 'org-store-link)
+;; (define-key global-map "\C-ca" 'org-agenda)
+;; (setq org-log-done t)
+;; ;; org-modeでの強調表示を可能にする
+;; (add-hook 'org-mode-hook 'turn-on-font-lock)
+;; ;; 見出しの余分な*を消す
+;; (setq org-hide-leading-stars t)
+;; ;; org-default-notes-fileのディレクトリ
+;; (setq org-directory "~/org/")
+;; ;; org-default-notes-fileのファイル名
+;; (setq org-default-notes-file "notes.org")
 
 
