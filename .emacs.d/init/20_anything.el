@@ -31,6 +31,8 @@
   ("C-c h"   . anything-mini)
   ("C-x b"   . anything-buffers-list)))
 
+(use-package anything-match-plugin)
+
 ;; (require 'anything-startup)
 
 ;; (require 'anything-config)
@@ -42,7 +44,6 @@
 ;; (define-key global-map (kbd "C-c i")   'anything-imenu)
 ;; (define-key global-map (kbd "C-c h")   'anything-mini)
 ;; (define-key global-map (kbd "C-x b")   'anything-buffers-list)
-
 
 ;;(require 'anything-match-plugin)
 
