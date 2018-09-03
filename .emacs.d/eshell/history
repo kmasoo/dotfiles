@@ -1,21 +1,3 @@
-sudo /etc/auto.misc 
-sudo emacs /etc/auto.misc 
-sudo /etc/init.d/autofs restart
-ssh hiroto@192.168.1.4
-cat autofs.misc
-ls
-cat auto.misc
-sudo emacs auto.misc
-exit
-sudo apt-get update
-sudo apt-get upgrade
-deb-multimedia-keyring を展開し、置換しています...
-man ati
-man radeon
-lspci
-sudo apt-spy
-sudo: apt-spy: コマンドが見つかりません
-sudo apt-get install apt-spy
 (.../apt-spy_3.2.2-1_amd64.deb から) apt-spy を展開しています...
 sudo apt-spy update
 debconf: (Dialog フロントエンドはダムターミナル、emacs のシェルバッファ、もしくはユーザが制御しているターミナルではない場合には動作しません。)
@@ -108,4 +90,39 @@ ls
 rails generate controller booklist
 rails s
 rails s
+exit
+ping 192.168.1.203
+exit
+cd 
+ls
+cd work
+ls
+cd git
+ls
+cd ddskk
+ls
+make what-where
+make install
+sudo make install
+cd ..
+ls
+mv ddskk ddskk_old
+ls -al
+git clone https://github.com/skk-dev/ddskk.git
+ls
+cd ddskk
+ls
+make what-where
+sudo make install
+Formatting: 関数索引 ... 
+info
+inFormatting: Miscellaneous ... 
+info
+cd ..
+ls
+cd ..
+ls
+git status
+ls
+./st.sh
 exit
