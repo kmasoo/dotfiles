@@ -18,11 +18,31 @@
 (use-package anything-startup)
 (use-package anything-config
 
-  :config
+ :config
   (setq anything-enable-shortcuts 'prefix)
 
   (bind-keys :map anything-map
 	     ("@" . anything-select-with-prefix-shortcut))
+;; anything-for-document
+
+(setq anything-for-document-sources
+      (list anything-c-source-man-pages
+	    anything-c-source-info-cl
+	    anything-c-source-info-elisp
+	    anything-c-source-apropos-emacs-commands
+	    anything-c-source-apropos-emacs-functions
+	    anything-c-source-apropos-emacs-variables))
+
+;; anything-for-document
+
+(defun anything-for-document ()
+  "Preconfigured 'anything' for anything-for-document."
+  (interactive)
+  (anything anything-for-document-sources
+	    (thing-at-point 'symbol) nil nil nil
+	    "*anything for document*"))
+
+
   :bind (
   ("M-x"     . anything-M-x)
   ("C-x C-f" . anything-find-files)
@@ -48,22 +68,4 @@
 ;;(require 'anything-match-plugin)
 
 
-;; anything-for-document
-
-;; (setq anything-for-document-sources
-;;       (list anything-c-source-man-pages
-;; 	    anything-c-source-info-cl
-;; 	    anything-c-source-info-elisp
-;; 	    anything-c-source-apropos-emacs-commands
-;; 	    anything-c-source-apropos-emacs-functions
-;; 	    anything-c-source-apropos-emacs-variables))
-
-;; ;; anything-for-document
-
-;; (defun anything-for-document ()
-;;   "Preconfigured 'anything' for anything-for-document."
-;;   (interactive)
-;;   (anything anything-for-document-sources
-;; 	    (thing-at-point 'symbol) nil nil nil
-;; 	    "*anything for document*"))
 
