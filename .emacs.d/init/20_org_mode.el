@@ -68,31 +68,33 @@
   ;; 見出しの余分な*を消す
   (setq org-hide-leading-stars t)
   ;; org-default-notes-fileのディレクトリ
-  (setq org-directory "~/org/")
+  (setq org-directory "~/.emacs.d/documents/org/")
   ;; org-default-notes-fileのファイル名
   (setq org-default-notes-file "notes.org")
-
-  :bind
+  :mode (("\\.txt$" . org-mode))
+  :bind (
   ("C-c l" . org-store-link)
   ("C-c a" . org-agenda)
-  ("C-c r" . org-remember)
+  ("C-c b" . org-iswitchb)
+  ("C-c r" . org-remember))
+  :init
+  ;; 保存先（もっとうまく書けたらいいのになぁ）
+  (setq my-org-directory "~/.emacs.d/documents/org/")
+  (setq my-org-agenda-directory "~/.emacs.d/documents/org/agenda/")
+  (setq org-agenda-files (list my-org-directory my-org-agenda-directory))
+  :config
+  ;; 基本設定
+  ;; Hide the first N-1 stars in a headline : nil --> t
+  (setq org-hide-leading-stars t)
+  ;; RET will follow the link : nil --> t
+  (setq org-return-follows-link t)
+  ;; Directory with org files : "~/org" --> "~/Documents/org"
+  (setq org-directory my-org-directory)
+  ;; Default target for storing notes : "~/.notes" --> "captured.org"
+  ;;(setq org-default-notes-file "captured.org")
+  ;; org-capture --> org-captureの使い方
+  ;; org-agenda  --> org-agendaの使い方
+  ;; ox-latex    --> ox-latexの使い方
 )
-;; ;; キーバインドの設定
-;; (define-key global-map "\C-cl" 'org-store-link)
-;; (define-key global-map "\C-ca" 'org-agenda)
-;; (define-key global-map "\C-cr" 'org-remember)
-
-;; (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
-;; (define-key global-map "\C-cl" 'org-store-link)
-;; (define-key global-map "\C-ca" 'org-agenda)
-;; (setq org-log-done t)
-;; ;; org-modeでの強調表示を可能にする
-;; (add-hook 'org-mode-hook 'turn-on-font-lock)
-;; ;; 見出しの余分な*を消す
-;; (setq org-hide-leading-stars t)
-;; ;; org-default-notes-fileのディレクトリ
-;; (setq org-directory "~/org/")
-;; ;; org-default-notes-fileのファイル名
-;; (setq org-default-notes-file "notes.org")
 
 
