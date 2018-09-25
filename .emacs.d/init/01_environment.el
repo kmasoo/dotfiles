@@ -30,7 +30,7 @@
 (setq initial-frame-alist
       (append (list
         '(width .  95)
-        '(height . 35)
+        '(height . 45)
         )
         initial-frame-alist))
 (setq default-frame-alist initial-frame-alist)
@@ -40,10 +40,11 @@
 ;;---------------------------------------------------------------------- 
 
 ;; Ricty
-(cond (window-system
- (set-face-attribute 'default nil
+;;(cond (window-system
+(set-face-attribute 'default nil
                     :family "Ricty"
                     :height 120)
+;;(set-face-attribute 'default nil :family "Inconsolata" :height 135)
 (set-fontset-font (frame-parameter nil 'font)
                   'japanese-jisx0208
                   (cons "Ricty" "iso10646-1"))
@@ -53,11 +54,11 @@
 (set-fontset-font (frame-parameter nil 'font)
                   'katakana-jisx0201
                   (cons "Ricty" "iso10646-1"))
-(setq w32-enable-synthesized-fonts t)
+;;(setq w32-enable-synthesized-fonts t)
 
 (add-to-list 'face-font-rescale-alist
              `(,(encode-coding-string "Ricty" 'emacs-mule) . 0.9))
-))
+;;))
 
 ;; Ricty Diminished Discord Regular for Powerline
 ;; (cond (window-system
@@ -213,21 +214,21 @@
 ;;; diffのオプション
 (setq diff-switches '("-u" "-p" "-N"))
 
-(when (fboundp 'w32-ime-initialize)
-  (setq default-input-method "W32-IME")
-  (setq-default w32-ime-mode-line-state-indicator "[--]")
-  (setq w32-ime-mode-line-state-indicator-list '("[--]" "[あ]" "[--]"))
-  (w32-ime-initialize)
-  (add-hook 'input-method-activate-hook
-            (lambda () (set-cursor-color "blue")))
-  (add-hook 'input-method-inactivate-hook
-            (lambda () (set-cursor-color "black")))
-  (add-hook 'minibuffer-setup-hook
-            (lambda ()
-              (if (ime-get-mode)
-                  (set-cursor-color "blue")
-                (set-cursor-color "black"))))
-  (global-set-key "\C-o" 'toggle-input-method))
+;; (when (fboundp 'w32-ime-initialize)
+;;   (setq default-input-method "W32-IME")
+;;   (setq-default w32-ime-mode-line-state-indicator "[--]")
+;;   (setq w32-ime-mode-line-state-indicator-list '("[--]" "[あ]" "[--]"))
+;;   (w32-ime-initialize)
+;;   (add-hook 'input-method-activate-hook
+;;             (lambda () (set-cursor-color "blue")))
+;;   (add-hook 'input-method-inactivate-hook
+;;             (lambda () (set-cursor-color "black")))
+;;   (add-hook 'minibuffer-setup-hook
+;;             (lambda ()
+;;               (if (ime-get-mode)
+;;                   (set-cursor-color "blue")
+;;                 (set-cursor-color "black"))))
+;;   (global-set-key "\C-o" 'toggle-input-method))
 
 ;; skk と dired-x との競合回避
 (setq dired-bind-jump nil)
@@ -235,15 +236,6 @@
 ;;---------------------------------------------------------------------- 
 ;;;
 ;;---------------------------------------------------------------------- 
-
-;;; 対応する括弧を光らせる
-(show-paren-mode 1)
-
-;;; ウィンドウ内に収まらないときだけカッコ内も光らせる
-(setq show-paren-style 'mixed)
-
-;;; 行末の空白を表示
-(setq-default show-trailing-whitespace t) 
 
 ;; server start for emacs-client
 

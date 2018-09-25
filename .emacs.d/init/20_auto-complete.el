@@ -13,8 +13,8 @@
   :init
   (progn
     (auto-complete-mode t))
-  :bind (("C-n" . ac-next)
-         ("C-p" . ac-previous))
+  ;; :bind (("C-n" . ac-next)
+  ;;        ("C-p" . ac-previous))
   :config
   (progn
     (use-package auto-complete-config)
@@ -31,6 +31,16 @@
     (setq ac-dwim  t)
     (setq ac-fuzzy-enable t)
 
+    ;; (bind-keys :map ac-menu-map
+    ;; 	       ("C-v" . ac-page-next)
+    ;; 	       ("M-v" . ac-page-previous)
+    ;; 	       ("C-n" . ac-next)
+    ;; 	       ("C-p" . ac-previous))
+    ;; (bind-keys :map ac-complete-mode-map 
+    ;; 	       ("C-v" . ac-page-next)
+    ;; 	       ("M-v" . ac-page-previous)
+    ;; 	       ("C-n" . ac-next)
+    ;; 	       ("C-p" . ac-previous))
     ;; (use-package ac-dabbrev
     ;;   :ensure
     ;;   :config
