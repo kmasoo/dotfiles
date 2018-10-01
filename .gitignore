@@ -2,12 +2,12 @@
 *~
 *.*~
 session.*
-/.emacs.d/*
+*
 !/.emacs.d/init.el
 !/.emacs.d/custom.el
-!/.emacs.d/config/*
-!/.emacs.d/init/*
-!/.emacs.d/lisp/*
-!/.emacs.d/themes/*
-!/.emacs.d/url/*
+!/.emacs.d/config/
+!/.emacs.d/init/
+!/.emacs.d/lisp/
+!/.emacs.d/themes/
+!/.emacs.d/url/
 
