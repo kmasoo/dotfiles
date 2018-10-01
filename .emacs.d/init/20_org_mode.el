@@ -68,7 +68,7 @@
   ;; 見出しの余分な*を消す
   (setq org-hide-leading-stars t)
   ;; org-default-notes-fileのディレクトリ
-  (setq org-directory "~/.emacs.d/documents/org/")
+  (setq org-directory "~/Dropbox/prj/documents/org/")
   ;; org-default-notes-fileのファイル名
   (setq org-default-notes-file "notes.org")
   :mode (("\\.txt$" . org-mode))
@@ -76,25 +76,118 @@
   ("C-c l" . org-store-link)
   ("C-c a" . org-agenda)
   ("C-c b" . org-iswitchb)
+  ("C-c c" . org-capture)
   ("C-c r" . org-remember))
   :init
   ;; 保存先（もっとうまく書けたらいいのになぁ）
-  (setq my-org-directory "~/.emacs.d/documents/org/")
-  (setq my-org-agenda-directory "~/.emacs.d/documents/org/agenda/")
-  (setq org-agenda-files (list my-org-directory my-org-agenda-directory))
+  (setq my-org-directory "~/Dropbox/prj/documents/org/")
+  (setq my-org-agenda-directory "~/Dropbox/prj/documents/org/agenda/")
+  (setq my-org-default-notes-file "~/Dropbox/prj/documents/org/captured.org") ;; org-captureしたときのとりあえずの保存先
   :config
   ;; 基本設定
   ;; Hide the first N-1 stars in a headline : nil --> t
   (setq org-hide-leading-stars t)
   ;; RET will follow the link : nil --> t
   (setq org-return-follows-link t)
-  ;; Directory with org files : "~/org" --> "~/Documents/org"
+
   (setq org-directory my-org-directory)
+  (setq org-agenda-files (list my-org-directory my-org-agenda-directory))
   ;; Default target for storing notes : "~/.notes" --> "captured.org"
-  ;;(setq org-default-notes-file "captured.org")
+  (setq org-default-notes-file my-org-default-notes-file)
   ;; org-capture --> org-captureの使い方
   ;; org-agenda  --> org-agendaの使い方
   ;; ox-latex    --> ox-latexの使い方
+
+  ;; org-capture setting
+
+  ;;ファイルパスの設定
+  (setq meetingfile "~/Dropbox/prj/documents/org/minutes.org")
+  (setq listfile "~/Dropbox/prj/documents/org/list100.org")
+
+  (setq org-capture-templates
+      '(
+	("a" "あっと思ったことを さっとφ(..)メモする" entry (file+headline "" "MEMO") "* %U%?\n\n%a\n%F\n" :empty-lines 1)
+	("n" "ネタなど" entry (file+headline "" "NETA") "* %?\n   Entered on %U" :empty-lines 1 :jump-to-captured 1)
+	("m" "みんなで会議" entry (file+datetree meetingfile) "* %T %?" :empty-lines 1 :jump-to-captured 1)
+	("p" "ぱっと 読み返したいと思ったとき" plain (file+headline "" "PLAIN") "%?" :empty-lines 1 :jump-to-captured 1 :unnarrowed 1)
+	("t" "とりあえず 仕事(TODO)を放り込む" entry (file+headline "" "GTD") "** TODO %T %?\n   Entered on %U    %i\n" :empty-lines 1)
+        ("s" "タスク（スケジュールあり）" entry (file+headline "" "Tasks")  "** TODO %? \n   SCHEDULED: %^t \n")
+        ("l" "やりたいこと" checkitem (file+headline listfile "やりたいこと") "[ ] %? \n")
+        ("b" "欲しいもの" checkitem (file+headline listfile "欲しいもの")  "[ ] %? \n")
+        ("g" "行きたいところ" checkitem (file+headline listfile "行きたいところ") "[ ] %? \n")
+	))
+
+  ;; org-agenda setting
+  (setq org-todo-keywords
+        '((sequence "APPT(a@/!)" "TODO(t)" "STARTED(s!)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCEL(c@/!)")))
+  (setq org-log-done 'time)   ;;; DONEの時刻を記録
+
+  (setq org-tag-alist
+        '((:startgroup . nil)
+          ("HOME" . ?h) ("OFFICE" . ?o)("IPNSPR" . ?i)("KEKPR" . ?k)
+          (:endgroup . nil)
+          (:newline . nil)
+          (:startgroup . nil)
+          ("TOPICS" . ?t) ("PRESS" . ?p)("HIGHLIGHT" . ?l)("EVENT" . ?e)
+          (:endgroup . nil)
+          (:newline . nil)
+          (:startgroup . nil)
+          ("T2K" . nil) ("BELLE" . nil)("COMET" . nil)
+          (:endgroup . nil)
+          (:newline . nil)
+          (:startgroup . nil)
+          ("READING" . ?r) ("WRITING" . ?w)("ASKING" . ?a)
+          (:endgroup . nil)))
+    ;; アジェンダ表示で下線を用いる
+  (add-hook 'org-agenda-mode-hook '(lambda () (hl-line-mode 1)))
+
+  ;; image 表示設定
+
+  ;;一律に指定する場合
+
+  ;;若干のハマりポイントなのですが、org-element-propertyに正しく反応させないと
+  ;;アトリビュートが正しく解釈されないので、画像リンクの前にハイフン等が付いているとダメ
+  (setq org-image-actual-width 256)
+
+  ;;個別に指定する場合
+  ;;   アトリビュートを使用して、横幅を指定します。#+ATTR_で始まっていれば正規表現で
+;;   勝手に解釈されますが、とりあえず#+ATTR_HTMLを使いましょう。
+;;   コロンの位置などフォーマットに気をつけてください。
+;;   以下のようにすると、横幅100ピクセルでインライン表示されます。
+
+  ;; #+ATTR_HTML: :width 100
+;;   もう一つ重要な設定。実は、上記のアトリビュート指定と同時に、
+;;   やはりorg-image-actual-widthの設定が必要です。しかも、数値指定ではなくリスト型でないとだめです。
+;;   以下のように設定すれば、アトリビュート指定がある時にはその値を優先し、無ければ
+;;   org-image-actual-widthの数値が使われます。
+
+;; (setq org-image-actual-width '(256))
+;; それから、若干のハマりポイントなのですが、org-element-propertyに正しく反応させないと
+;; アトリビュートが正しく解釈されないので、画像リンクの前にハイフン等が付いているとダメ
+
+;;   これでめでたくorgバッファでもJPEG 2000画像がインライン表示されるようになります。
+;;   Orgバッファで次のように画像へのリンク記載します。ちなみにリンク上で、C-c C-oすれば、
+;;   別バッファにフルサイズの画像がレンダリングされます。
+
+;; #+ATTR_HTML: :width 128
+;; [[~/Desktop/lena_std.jp2]]
+
+;; [[~/Desktop/lena_std.jp2]]
+
+;; #+BEGIN_SRC emacs-lisp
+;; (org-toggle-inline-images)
+;; #+END_SRC
+;; org-toggle-inline-imagesを評価します。上の例では、org-toggle-inline-imagesの行に
+;; カーソルを置いて、C-c C-cすればOKです。以下のように表示が切り替わると思います。
+;; 大元の画像は、横幅が512ピクセルですから、アトリビュート指定で128ピクセルに、
+;; 指定なし（デフォ値反映）で256ピクセルにリサイズされています。
+
+
 )
-
-
+(use-package org-attach-screenshot
+  :ensure t
+  :init
+  :config
+  :bind
+   ("C-c t" . org-attach-screenshot)
+  )

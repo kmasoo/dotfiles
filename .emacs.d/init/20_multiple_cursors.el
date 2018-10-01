@@ -1,124 +1,75 @@
 
-(use-package multiple-cursors
-  :bind (:map modi-mode-map
-         ("C-S-c C-S-c" . mc/edit-lines)
-         ("C->" . mc/mark-next-like-this)
-         ("C-<" . mc/mark-previous-like-this)
-         ("C-c C-<" . mc/mark-all-like-this)
-         ("C-S-<mouse-1>" . mc/add-cursor-on-click))
-  :bind (:map region-bindings-mode-map
-         ("a" . mc/mark-all-like-this)
-         ("p" . mc/mark-previous-like-this)
-         ("n" . mc/mark-next-like-this)
-         ("P" . mc/unmark-previous-like-this)
-         ("N" . mc/unmark-next-like-this)
-         ("[" . mc/cycle-backward)
-         ("]" . mc/cycle-forward)
-         ("m" . mc/mark-more-like-this-extended)
-         ("h" . mc-hide-unmatched-lines-mode)
-         ("\\" . mc/vertical-align-with-space)
-         ("#" . mc/insert-numbers) ; use num prefix to set the starting number
-         ("^" . mc/edit-beginnings-of-lines)
-         ("$" . mc/edit-ends-of-lines))
+
+(use-package expand-region
+  :ensure t
   :init
-  (progn
-    ;; Temporary hack to get around bug # 28524 in emacs 26+
-    ;; https://debbugs.gnu.org/cgi/bugreport.cgi?bug=28524
-    (setq mc/mode-line
-          `(" mc:" (:eval (format ,(propertize "%-2d" 'face 'font-lock-warning-face)
-                                  (mc/num-cursors)))))
+  :config
+  ;; 真っ先に入れておかないとすぐに括弧に対応してくれない…
+  (push 'er/mark-outside-pairs er/try-expand-list)
 
-    (setq mc/list-file (locate-user-emacs-file "mc-lists"))
+  ;; C-@: 押すごとにリージョンを広げる
+  ;; C-M-@: 押すごとにリージョンを狭める
+  ;(global-set-key (kbd "C-M-SPC") 'er/expand-region)
+  (global-set-key (kbd "C-@") 'er/expand-region)
+  (global-set-key (kbd "C-M-@") 'er/contract-region)
+)
 
-    ;; Disable the annoying sluggish matching paren blinks for all cursors
-    ;; when you happen to type a ")" or "}" at all cursor locations.
-    (defvar modi/mc-blink-matching-paren--store nil
-      "Internal variable used to restore the value of `blink-matching-paren'
-after `multiple-cursors-mode' is quit.")
+(use-package multiple-cursors
+  :ensure t
+  :init
+    (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+    (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+    (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+    (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+)
 
-    ;; The `multiple-cursors-mode-enabled-hook' and
-    ;; `multiple-cursors-mode-disabled-hook' are run in the
-    ;; `multiple-cursors-mode' minor mode definition, but they are not declared
-    ;; (not `defvar'd). So do that first before using `add-hook'.
-    (defvar multiple-cursors-mode-enabled-hook nil
-      "Hook that is run after `multiple-cursors-mode' is enabled.")
-    (defvar multiple-cursors-mode-disabled-hook nil
-      "Hook that is run after `multiple-cursors-mode' is disabled.")
+;; 検索
+;; リージョンにおける文字列を検索対象にインクリメンタルサーチを
+;; 走らせることができる．ここではphi-searchを用いることにする．
+;; このphi-searchはmultiple-cursor向けに設計してあるため，その相性は大変良い．
+;; リージョンを程よく選択した後，sやrを押すことで，選択された文字列を対象に即座に
+;; インクリメンタルサーチが発動する．続けてジャンプしたい場合はC-sやC-rを続けて押す．
+;; 上記でC-sやC-rをはじめからバインドしなかった理由は，リージョンをisearchで
+;; 広げることがしばしばあるためである．
 
-    (defun modi/mc-when-enabled ()
-      "Function to be added to `multiple-cursors-mode-enabled-hook'."
-      (setq modi/mc-blink-matching-paren--store blink-matching-paren)
-      (setq blink-matching-paren nil))
+(use-package phi-search
+  :ensure t
+  :init
+  :config
+  )
 
-    (defun modi/mc-when-disabled ()
-      "Function to be added to `multiple-cursors-mode-disabled-hook'."
-      (setq blink-matching-paren modi/mc-blink-matching-paren--store))
+;;置換
+;; リージョンの文字列を取得することさえできれば，それをクエリにして
+;; 置換のコマンドを発動させることも可能である．
+;; まず@rubikitch氏が作成したreplace-from-region.elをダウンロードして
+;; ロードパスの通ったところに置き，以下を設定ファイルに追記しておく．
 
-    (add-hook 'multiple-cursors-mode-enabled-hook #'modi/mc-when-enabled)
-    (add-hook 'multiple-cursors-mode-disabled-hook #'modi/mc-when-disabled)))
+(use-package replace-from-region
+  :ensure t
+  :init
+  :config
+)
 
 
-(provide 'setup-multiple-cursors)
+;; 特徴・利点
+;; リージョン（最後にマークした箇所から現在のカーソル位置の間で囲まれた領域）を
+;; 有効にした状態でのみ，region-bindings-modeというマイナーモードが発動する．
+;; このマイナーモード下でのみ有効なキーバインドを設定することが可能なため，
+;; 既存のキーバインドの設定が侵食されにくい，という利点がある.
 
-;; * Mark one more occurrence
-;;
-;; | mc/mark-next-like-this            | Adds a cursor and region at the next part of the buffer       |
-;; |                                   | forwards that matches the current region.                     |
-;; | mc/mark-next-word-like-this       | Like `mc/mark-next-like-this` but only for whole words.       |
-;; | mc/mark-next-symbol-like-this     | Like `mc/mark-next-like-this` but only for whole symbols.     |
-;; | mc/mark-previous-like-this        | Adds a cursor and region at the next part of the buffer       |
-;; |                                   | backwards that matches the current region.                    |
-;; | mc/mark-previous-word-like-this   | Like `mc/mark-previous-like-this` but only for whole words.   |
-;; | mc/mark-previous-symbol-like-this | Like `mc/mark-previous-like-this` but only for whole symbols. |
-;; | mc/mark-more-like-this-extended   | Use arrow keys to quickly mark/skip next/previous occurances. |
-;; | mc/add-cursor-on-click            | Bind to a mouse event to add cursors by clicking.             |
-;; |                                   | See tips-section.                                             |
-;;
-;; * Mark many occurrences
-;;
-;; | mc/mark-all-like-this                  | Marks all parts of the buffer that matches the current region.        |
-;; | mc/mark-all-words-like-this            | Like `mc/mark-all-like-this` but only for whole words.                |
-;; | mc/mark-all-symbols-like-this          | Like `mc/mark-all-like-this` but only for whole symbols.              |
-;; | mc/mark-all-in-region                  | Prompts for a string to match in the region, adding cursors           |
-;; |                                        | to all of them.                                                       |
-;; | mc/mark-all-like-this-in-defun         | Marks all parts of the current defun that matches the current region. |
-;; | mc/mark-all-words-like-this-in-defun   | Like `mc/mark-all-like-this-in-defun` but only for whole words.       |
-;; | mc/mark-all-symbols-like-this-in-defun | Like `mc/mark-all-like-this-in-defun` but only for whole symbols.     |
-;; | mc/mark-all-like-this-dwim             | Tries to be smart about marking everything you want. Can be           |
-;; |                                        | pressed multiple times.                                               |
-;;
-;; * Special
-;;
-;; | set-rectangular-region-anchor | Think of this one as `set-mark` except you're marking a rectangular region. |
-;; | mc/mark-sgml-tag-pair         | Mark the current opening and closing tag.                                   |
-;; | mc/insert-numbers             | Insert increasing numbers for each cursor, top to bottom.                   |
-;; | mc/sort-regions               | Sort the marked regions alphabetically.                                     |
-;; | mc/reverse-regions            | Reverse the order of the marked regions.                                    |
-;;
-;; ** Tips and tricks
-;; - To get out of multiple-cursors-mode, press `<return>` or `C-g`. The latter will
-;;   first disable multiple regions before disabling multiple cursors. If you want to
-;;   insert a newline in multiple-cursors-mode, use `C-j`.
-;; - Sometimes you end up with cursors outside of your view. You can
-;;   scroll the screen to center on each cursor with `C-v` and `M-v`.
-;; - Try pressing `mc/mark-next-like-this` with no region selected. It will just add a cursor
-;;   on the next line.
-;; - Try pressing `mc/mark-all-like-this-dwim` on a tagname in html-mode.
-;; - Notice that the number of cursors active can be seen in the modeline.
-;; - If you get out of multiple-cursors-mode and yank - it will yank only
-;;   from the kill-ring of main cursor. To yank from the kill-rings of
-;;   every cursor use yank-rectangle, normally found at C-x r y.
-;; - You can use `mc/reverse-regions` with nothing selected and just one cursor.
-;;   It will then flip the sexp at point and the one below it.
-;; - If you would like to keep the global bindings clean, and get custom keybindings
-;;   when the region is active, you can try [region-bindings-mode](https://github.com/fgallina/region-bindings-mode).
-;;
-;; It is recommended to add `mc/mark-next-like-this` to a key binding that's
-;; right next to the key for `er/expand-region`.
+(use-package region-bindings-mode
+  :ensure t
+  :init
+  :config
+  (region-bindings-mode-enable)
+  (define-key region-bindings-mode-map "a" 'mc/mark-all-like-this)
+  (define-key region-bindings-mode-map "p" 'mc/mark-previous-like-this)
+  (define-key region-bindings-mode-map "n" 'mc/mark-next-like-this)
+  (define-key region-bindings-mode-map "m" 'mc/mark-more-like-this-extended)
+  (define-key region-bindings-mode-map "s" 'phi-search)
+  (define-key region-bindings-mode-map "r" 'phi-search-backward)
+  (define-key region-bindings-mode-map "q" 'query-replace-from-region)
+  (define-key region-bindings-mode-map "C-q" 'query-replace-regexp-from-region)
+  )
 
-;; (require 'multiple-cursors)
-;; (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-;; (global-set-key (kbd "C->") 'mc/mark-next-like-this)
-;; (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-;; (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 

@@ -43,7 +43,7 @@
 ;;(cond (window-system
 (set-face-attribute 'default nil
                     :family "Ricty"
-                    :height 120)
+                    :height 135)
 ;;(set-face-attribute 'default nil :family "Inconsolata" :height 135)
 (set-fontset-font (frame-parameter nil 'font)
                   'japanese-jisx0208
@@ -56,8 +56,8 @@
                   (cons "Ricty" "iso10646-1"))
 ;;(setq w32-enable-synthesized-fonts t)
 
-(add-to-list 'face-font-rescale-alist
-             `(,(encode-coding-string "Ricty" 'emacs-mule) . 0.9))
+;;(add-to-list 'face-font-rescale-alist
+;;             `(,(encode-coding-string "Ricty" 'emacs-mule) . 0.9))
 ;;))
 
 ;; Ricty Diminished Discord Regular for Powerline
@@ -138,7 +138,7 @@
 (setq frame-title-format "%f")
 
 ;; 行番号を常に表示する
-(global-linum-mode t)
+;;(global-linum-mode t)
 
 ;;----------------------------------------------------------------------
 ;;;
