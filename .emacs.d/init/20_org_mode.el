@@ -57,7 +57,10 @@
 ;; org-modeでは，検索した結果などについて，不要な部分を折りたたんだスパース木の形で表示することができる．
 ;; C-c / /	正規表現で検索した結果をスパース木表示
 
-;;(require 'org)
+
+;;--------------------------------------------------------------------------
+;; org 設定
+;;--------------------------------------------------------------------------
 (use-package org
   :ensure
   :config
@@ -70,7 +73,7 @@
   ;; org-default-notes-fileのディレクトリ
   (setq org-directory "~/Dropbox/prj/documents/org/")
   ;; org-default-notes-fileのファイル名
-  (setq org-default-notes-file "notes.org")
+  (setq org-default-notes-file "captured.org")
   :mode (("\\.txt$" . org-mode))
   :bind (
   ("C-c l" . org-store-link)
@@ -81,7 +84,7 @@
   :init
   ;; 保存先（もっとうまく書けたらいいのになぁ）
   (setq my-org-directory "~/Dropbox/prj/documents/org/")
-  (setq my-org-agenda-directory "~/Dropbox/prj/documents/org/agenda/")
+  (setq my-org-agenda-directory "~/Dropbox/prj/documents/org/")
   (setq my-org-default-notes-file "~/Dropbox/prj/documents/org/captured.org") ;; org-captureしたときのとりあえずの保存先
   :config
   ;; 基本設定
@@ -94,21 +97,19 @@
   (setq org-agenda-files (list my-org-directory my-org-agenda-directory))
   ;; Default target for storing notes : "~/.notes" --> "captured.org"
   (setq org-default-notes-file my-org-default-notes-file)
-  ;; org-capture --> org-captureの使い方
-  ;; org-agenda  --> org-agendaの使い方
-  ;; ox-latex    --> ox-latexの使い方
 
-  ;; org-capture setting
+
+;;--------------------------------------------------------------------------
+;; org-capture setting
+;;--------------------------------------------------------------------------
 
   ;;ファイルパスの設定
-  (setq meetingfile "~/Dropbox/prj/documents/org/minutes.org")
-  (setq listfile "~/Dropbox/prj/documents/org/list100.org")
+  (setq listfile "~/Dropbox/prj/documents/org/list.org")
 
   (setq org-capture-templates
       '(
 	("a" "あっと思ったことを さっとφ(..)メモする" entry (file+headline "" "MEMO") "* %U%?\n\n%a\n%F\n" :empty-lines 1)
-	("n" "ネタなど" entry (file+headline "" "NETA") "* %?\n   Entered on %U" :empty-lines 1 :jump-to-captured 1)
-	("m" "みんなで会議" entry (file+datetree meetingfile) "* %T %?" :empty-lines 1 :jump-to-captured 1)
+	("n" "ノートブック" entry (file+headline "" "NOTE") "* %?\n   Entered on %U" :empty-lines 1 :jump-to-captured 1)
 	("p" "ぱっと 読み返したいと思ったとき" plain (file+headline "" "PLAIN") "%?" :empty-lines 1 :jump-to-captured 1 :unnarrowed 1)
 	("t" "とりあえず 仕事(TODO)を放り込む" entry (file+headline "" "GTD") "** TODO %T %?\n   Entered on %U    %i\n" :empty-lines 1)
         ("s" "タスク（スケジュールあり）" entry (file+headline "" "Tasks")  "** TODO %? \n   SCHEDULED: %^t \n")
@@ -117,7 +118,24 @@
         ("g" "行きたいところ" checkitem (file+headline listfile "行きたいところ") "[ ] %? \n")
 	))
 
-  ;; org-agenda setting
+;;--------------------------------------------------------------------------
+; メモをC-M-^一発で見るための設定(必要ないかも)
+;;--------------------------------------------------------------------------
+; https://qiita.com/takaxp/items/0b717ad1d0488b74429d から拝借
+(defun show-org-buffer (file)
+  "Show an org-file FILE on the current buffer."
+  (interactive)
+  (if (get-buffer file)
+      (let ((buffer (get-buffer file)))
+        (switch-to-buffer buffer)
+        (message "%s" file))
+    (find-file (concat "~/Dropbox/prj/documents/org/" file))))
+(global-set-key (kbd "C-M-^") '(lambda () (interactive)
+                                 (show-org-buffer "captured.org")))
+
+;;--------------------------------------------------------------------------
+;; org-agenda setting
+;;--------------------------------------------------------------------------
   (setq org-todo-keywords
         '((sequence "APPT(a@/!)" "TODO(t)" "STARTED(s!)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCEL(c@/!)")))
   (setq org-log-done 'time)   ;;; DONEの時刻を記録
@@ -138,10 +156,16 @@
           (:startgroup . nil)
           ("READING" . ?r) ("WRITING" . ?w)("ASKING" . ?a)
           (:endgroup . nil)))
-    ;; アジェンダ表示で下線を用いる
-  (add-hook 'org-agenda-mode-hook '(lambda () (hl-line-mode 1)))
 
-  ;; image 表示設定
+  ;; アジェンダ表示で下線を用いる
+  (add-hook 'org-agenda-mode-hook '(lambda () (hl-line-mode 1)))
+  ;; refile setting
+  (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
+
+
+;;--------------------------------------------------------------------------
+;; image 表示設定
+;;--------------------------------------------------------------------------
 
   ;;一律に指定する場合
 
@@ -184,10 +208,33 @@
 
 
 )
+
+
+;;--------------------------------------------------------------------------
+;; org-attach-screenshot
+;;--------------------------------------------------------------------------
 (use-package org-attach-screenshot
   :ensure t
   :init
   :config
   :bind
    ("C-c t" . org-attach-screenshot)
+   )
+
+;;--------------------------------------------------------------------------
+;; org-download
+;;--------------------------------------------------------------------------
+;; キルバッファに画像ファイル名やURLを入れた上で、 M-x org-download-yank を
+;; 実行すると、ドラッグ&ドロップしたときと同様に画像が挿入される。
+;; 何の役に立つんだという人もいるだろうが、実は Dired で画像ファイルの上で 0 w
+;; と打つとそのファイルの場所がキルバッファに入るので、すでにローカルにある
+;; 画像を簡単に挿入することが出来るのである。
+;; また、M-x org-download-screenshotを実行し、適当なウィンドウ上でクリックすると、
+;; そのウィンドウのスクリーンショットが挿入される。
+(use-package org-download
+  :ensure t
+  :init
+  :config
+  (setq-default org-download-image-dir "~/Dropbox/prj/documents/org/image")
+
   )

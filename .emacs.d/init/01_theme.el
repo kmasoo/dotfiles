@@ -1,4 +1,6 @@
 
+;; 指定できる色指定の一覧はM-x list-colors-displayで確認できる
+;; カスタマイズしたテーマファイルは、M-x customize-create-themeを実行しても作成できる。
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (setq custom-theme-directory "~/.emacs.d/themes")
