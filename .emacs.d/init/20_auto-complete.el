@@ -9,6 +9,7 @@
 ;; C-s
 
 (use-package auto-complete
+  :ensure t
   :commands auto-complete-mode
   :init
   (progn
