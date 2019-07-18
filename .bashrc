@@ -1,7 +1,7 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
-echo "call .bashrc entered"
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -113,9 +113,12 @@ if ! shopt -oq posix; then
 fi
 ## [ -r /home/masoo/.byobu/prompt ] && . /home/masoo/.byobu/prompt   #byobu-prompt
 
-export PATH="$HOME/.rbenv/bin:$PATH"
+
+export NRFSDK15_ROOT=$HOME/prj/nRF5_SDK
+export PATH="$HOME/.rbenv/bin:$HOME/prj/nRF5_SDK:$PATH"
 eval "$(rbenv init -)"
 
+
 umask 0022
-echo "call .bashrc ended"
+
 

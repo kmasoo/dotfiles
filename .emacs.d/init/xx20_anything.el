@@ -42,15 +42,17 @@
 	    (thing-at-point 'symbol) nil nil nil
 	    "*anything for document*"))
 
-
   :bind (
   ("M-x"     . anything-M-x)
-  ("C-x C-f" . anything-find-files)
+  ;;  ("C-x C-f" . anything-find-files)
+;;  ("C-x C-f" . anything-filelist+)
   ("C-x C-r" . anything-recentf)
 ;;  ("C-c i"   . anything-imenu) -> デフォルトでC-x c i にanything-imenuが割当られている
   ("C-c m"   . anything-for-document)
   ("C-c h"   . anything-mini)
   ("C-x b"   . anything-buffers-list)))
+
+
 
 (use-package anything-match-plugin)
 
