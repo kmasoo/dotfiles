@@ -62,14 +62,14 @@
 
 ;; migemo + swiper（日本語をローマ字検索できるようになる
 ;;-------------------------------------
-;; avy-migemo
+;; -migemo
 ;;-------------------------------------
-(use-package avy-migemo
-  :ensure t
-  :config
-  (avy-migemo-mode 1)
-;;(require 'avy-migemo-e.g.swiper)
-)
+;;(use-package avy-migemo
+;;  :ensure t
+;;  :config
+;;  (avy-migemo-mode 1)
+;;;;(require 'avy-migemo-e.g.swiper)
+;;)
 
 ;;-------------------------------------
 ;; company
@@ -177,7 +177,16 @@
 (use-package dumb-jump
   :ensure t
   :config
-  (setq dumb-jump-mode t)
+  ;; これをしないとホームディレクトリ以下が検索対象になる
+  (setq dumb-jump-default-project "")
+  ;; 日本語を含むパスだとgit grepがちゃんと動かない…
+  (setq dumb-jump-force-searcher 'rg)
+  ;; 標準キーバインドを有効にする
+  (dumb-jump-mode)
+  ;;C-M-g ジャンプ
+  ;;C-M-p 戻る
+  ;;C-M-q チラ見
+  ;;(setq dumb-jump-mode t)
   (setq dumb-jump-selector 'ivy) ;; 候補選択をivyに任せます
   (setq dumb-jump-use-visible-window nil)
 )
@@ -222,7 +231,7 @@
 ;;(global-set-key (kbd "super-shift-i") 'find-file-in-project) ;; ファイル検索
 (global-set-key (kbd "C-x C-r") 'counsel-recentf) ;; 履歴によるファイル検索
 ;;(global-set-key (kbd "super-f") 'counsel-rg) ;; find-usage
-(global-set-key (kbd "C-c C-d") 'dumb-jump) ;; go-to-definition
+;;(global-set-key (kbd "C-c C-d") 'dumb-jump) ;; go-to-definition
 (global-set-key (kbd "C-x t") 'neotree) ;; ディレクトリツリー展開
 
 (global-set-key (kbd "C-c C-r") 'ivy-resume)

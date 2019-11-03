@@ -272,3 +272,17 @@
   (set-buffer (find-file (concat "/sudo::" file))))
 
 
+
+;; paradox
+;; 既存の package menu を拡張し、様々な機能を追加したものです。
+;; 以下の特徴があります。
+;; モードラインに現在インストールしているパッケージ数、更新パッケージ数などの表示
+;; 新しくリポジトリに追加されたパッケージの表示
+;; 更新パッケージの一括マーク
+;; マークした複数のパッケージを一括でインストール、更新（非同期）
+;; GitHub Star数の表示
+;; GitHub Star数によるソート
+(use-package paradox
+ :ensure t
+ :custom
+ (paradox-github-token t))
