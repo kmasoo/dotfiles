@@ -1,182 +1,105 @@
-########################################
-# 環境変数
-export LANG=ja_JP.UTF-8
+# ==========================================================
+# 1. 基本・色の設定
+# ==========================================================
+# 色の設定を有効にする
+autoload -Uz colors && colors
 
-
-# 色を使用出来るようにする
-autoload -Uz colors
-colors
-
-# emacs 風キーバインドにする
-bindkey -e
-
-# ヒストリの設定
-HISTFILE=~/.zsh_history
-HISTSIZE=1000000
-SAVEHIST=1000000
-
-# プロンプト
-# 1行表示
-# PROMPT="%~ %# "
-# 2行表示
-PROMPT="%{${fg_bold[green]}%}[%n@%m %l]%{${reset_color}%} %~
-%# "
-
-
-# 単語の区切り文字を指定する
-autoload -Uz select-word-style
-select-word-style default
-# ここで指定した文字は単語区切りとみなされる
-# / も区切りと扱うので、^W でディレクトリ１つ分を削除できる
-zstyle ':zle:*' word-chars " /=;@:{},|"
-zstyle ':zle:*' word-style unspecified
-
-########################################
-# 補完
 # 補完機能を有効にする
-autoload -Uz compinit
-compinit
+autoload -Uz compinit && compinit
 
-# 補完で小文字でも大文字にマッチさせる
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+# 補完候補に色を付ける (ディレクトリを明るいシアンに) [cite: 1]
+export LS_COLORS='di=01;36:ln=01;35:so=32:pi=33:ex=01;32:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
-# ../ の後は今いるディレクトリを補完しない
-zstyle ':completion:*' ignore-parents parent pwd ..
+# 補完時の挙動設定 [cite: 1]
+zstyle ':completion:*:default' menu select=1        # 補完候補を矢印キーで選択
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' # 大文字小文字を区別しない
+zstyle ':completion:*' completer _complete _match _approximate # 近似マッチ補完 
+zstyle ':completion:*:approximate:*' max-errors 1
 
-# sudo の後ろでコマンド名を補完する
-zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
-                   /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
+# ==========================================================
+# 2. プロンプトの設定
+# ==========================================================
+# 左側: ユーザー(シアン)@ホスト(マゼンタ):パス(イエロー) 改行後に $(マゼンタ) [cite: 1]
+PROMPT="%F{cyan}%n%f@%F{magenta}%m%f:%F{yellow}%~%f
+%F{magenta}$%f "
 
-# ps コマンドのプロセス名補完
-zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
+# 右側: 実行時刻を表示 [cite: 1]
+RPROMPT="%F{white}[%D{%H:%M:%S}]%f"
 
+# ==========================================================
+# 3. ヒストリー・ディレクトリ操作
+# ==========================================================
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
 
-########################################
-# vcs_info
-autoload -Uz vcs_info
-autoload -Uz add-zsh-hook
+setopt hist_ignore_dups     # 重複するコマンドは記録しない [cite: 1]
+setopt auto_list            # 補完候補を一覧表示 [cite: 1]
+setopt auto_cd              # ディレクトリ名入力だけで移動 [cite: 1, 2]
+setopt auto_pushd           # 移動履歴を記録 (cd - [Tab] で選択可能) 
 
-zstyle ':vcs_info:*' formats '%F{green}(%s)-[%b]%f'
-zstyle ':vcs_info:*' actionformats '%F{red}(%s)-[%b|%a]%f'
+# 上下キーで履歴検索 
+autoload -Uz history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+bindkey "^[[A" history-beginning-search-backward-end
+bindkey "^[[B" history-beginning-search-forward-end
 
-function _update_vcs_info_msg() {
-    LANG=en_US.UTF-8 vcs_info
-    RPROMPT="${vcs_info_msg_0_}"
-}
-add-zsh-hook precmd _update_vcs_info_msg
+# ==========================================================
+# 4. エイリアス (短縮コマンド)
+# ==========================================================
+# 基本操作 
+alias ls='ls --color=auto'
+alias ll='ls -alF'
+alias grep='grep --color=auto'
 
-
-########################################
-# オプション
-# 日本語ファイル名を表示可能にする
-setopt print_eight_bit
-
-# beep を無効にする
-setopt no_beep
-
-# フローコントロールを無効にする
-setopt no_flow_control
-
-# Ctrl+Dでzshを終了しない
-setopt ignore_eof
-
-# '#' 以降をコメントとして扱う
-setopt interactive_comments
-
-# ディレクトリスタック
-DIRSTACKFILE="$HOME/.cache/zsh/dirs"
-if [[ -f $DIRSTACKFILE ]] && [[ $#dirstack -eq 0 ]]; then
-  dirstack=( ${(f)"$(< $DIRSTACKFILE)"} )
-  [[ -d $dirstack[1] ]] && cd $dirstack[1]
-fi
-chpwd() {
-  print -l $PWD ${(u)dirstack} >$DIRSTACKFILE
-}
-
-DIRSTACKSIZE=20
-
-setopt autopushd pushdsilent pushdtohome
-
-# ディレクトリ名だけでcdする
-setopt auto_cd
-
-# cd したら自動的にpushdする
-#setopt auto_pushd
-
-# 重複したディレクトリを追加しない
-setopt pushd_ignore_dups
-
-## This reverts the +/- operators.
-setopt pushd_minus
-
-# 同時に起動したzshの間でヒストリを共有する
-setopt share_history
-
-# 同じコマンドをヒストリに残さない
-setopt hist_ignore_all_dups
-
-# スペースから始まるコマンド行はヒストリに残さない
-setopt hist_ignore_space
-
-# ヒストリに保存するときに余分なスペースを削除する
-setopt hist_reduce_blanks
-
-# 高機能なワイルドカード展開を使用する
-setopt extended_glob
-
-########################################
-# キーバインド
-
-# ^R で履歴検索をするときに * でワイルドカードを使用出来るようにする
-bindkey '^R' history-incremental-pattern-search-backward
-
-########################################
-# エイリアス
-
-alias la='ls -a'
-alias ll='ls -l'
-
+# 安全のための確認 
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 
-alias mkdir='mkdir -p'
+# ディレクトリ移動の短縮 
+alias ..='cd ..'
+alias ...='cd ../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
 
-# sudo の後のコマンドでエイリアスを有効にする
-alias sudo='sudo '
+# ファイル・ディレクトリ比較 
+alias diffs='diff --color=auto -y --suppress-common-lines -W 150'
+alias diffdir='diff -qr'
+alias pdfv='diff-pdf --view' # PDFの見た目を比較
 
-# グローバルエイリアス
-alias -g L='| less'
-alias -g G='| grep'
+# ==========================================================
+# 5. 関数 (便利機能)
+# ==========================================================
+# PDFのテキスト差分を比較
+pdfdiff() {
+    diffs <(pdftotext "$1" -) <(pdftotext "$2" -)
+}
 
-# C で標準出力をクリップボードにコピーする
-# mollifier delta blog : http://mollifier.hatenablog.com/entry/20100317/p1
-if which pbcopy >/dev/null 2>&1 ; then
-    # Mac
-    alias -g C='| pbcopy'
-elif which xsel >/dev/null 2>&1 ; then
-    # Linux
-    alias -g C='| xsel --input --clipboard'
-elif which putclip >/dev/null 2>&1 ; then
-    # Cygwin
-    alias -g C='| putclip'
-fi
+# Emacs の ediff で比較
+ediff() {
+    emacsclient -nw --eval "(ediff-files \"$1\" \"$2\")"
+}
 
+# ==========================================================
+# 6. プラグインの読み込みと色のカスタマイズ
+# ==========================================================
+# プラグインの読み込み [cite: 3]
+[[ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+[[ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# シンタックスハイライトの色設定 (明るめの色に上書き) [cite: 3]
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[command]='fg=white,bold'
+ZSH_HIGHLIGHT_STYLES[alias]='fg=white,bold'
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=white,bold'
+ZSH_HIGHLIGHT_STYLES[function]='fg=white,bold'
+ZSH_HIGHLIGHT_STYLES[arg0]='fg=cyan,bold'
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=green'
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=green'
+ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=red,bold'
+ZSH_HIGHLIGHT_STYLES[path]='fg=yellow'
 
-########################################
-# OS 別の設定
-case ${OSTYPE} in
-    darwin*)
-        #Mac用の設定
-        export CLICOLOR=1
-        alias ls='ls -G -F'
-        ;;
-    linux*)
-        #Linux用の設定
-        alias ls='ls -F --color=auto'
-        ;;
-esac
-
-# vim:set ft=zsh:
-
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
