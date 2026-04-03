@@ -9,7 +9,7 @@ set termguicolors       " 24bitカラー有効
 set mouse=a             " マウス操作有効
 set signcolumn=yes      " 画面のガタつき防止
 set laststatus=2        " ステータスラインを常に表示
-set cursorline          " 現在行を強調
+" set cursorline          " 現在行を強調
 set showmatch           " 対応する括弧を表示
 set title               " タイトルをファイル名に
 
