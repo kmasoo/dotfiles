@@ -2,7 +2,9 @@
 ;; 1. 基本動作・表示設定
 ;; ==========================================================
 ;; スタートアップページを表示しない
+(setq inhibit-startup-screen t)
 (setq inhibit-startup-message t)
+(setq inhibit-startup-echo-area-message t)
 
 ;; ビープ音を出さなくする
 (setq visible-bell t)

@@ -10,7 +10,10 @@ set $up k
 set $right l
 
 # デフォルトアプリ
-set $term alacritty
+#set $term alacritty -e tmux
+# すでに tmux 用の Alacritty があればフォーカス、なければ起動
+set $term [app_id="Alacritty" title="tmux"] focus || exec alacritty -T tmux -e tmux new-session -A -s main
+#set $term tmux
 set $menu rofi -show drun -show-icons
 set $filemanager thunar
 set $lock swaylock
@@ -103,7 +106,7 @@ mode "resize" {
     bindsym $left resize shrink width 10px
     bindsym $up resize shrink height 10px
     bindsym $down resize grow height 10px
-    
+
     # 矢印キーでもリサイズ可能に
     bindsym Right resize grow width 10px
     bindsym Left resize shrink width 10px
@@ -116,6 +119,15 @@ mode "resize" {
 bindsym $mod+Shift+r mode "resize"
 
 exec swayidle -w timeout 1800 "$lock"
+
+# 環境変数をインポートしてからデーモンを起動
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec emacs --daemon
+
+#
+assign [app_id="firefox"] workspace number 2
+assign [app_id="chromium"] workspace number 2
+assign [class="emacs"] workspace number 2
 
 # パス設定
 include $HOME/.config/sway/themes/gruvbox-material-dark/sway/config-gruvbox-material-dark

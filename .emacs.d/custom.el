@@ -6,7 +6,6 @@
  '(custom-safe-themes
    '("862a0ccc73c12df4df325427f9285fa6a5bbba593a77257f43b01c84269f51b0"
      default))
- '(inhibit-startup-screen nil)
  '(package-selected-packages nil)
  '(paradox-github-token t)
  '(skk-jisyo-edit-user-accepts-editing t))
