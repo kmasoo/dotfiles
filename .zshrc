@@ -71,19 +71,31 @@ alias ..='cd ..'
 alias ...='cd ../..'
 
 # Git エイリアス
-alias gst='git status'
+alias gs='git status'
 alias ga='git add'
 alias gaa='git add --all'
-alias gcmsg='git commit -m'
-alias gp='git push'
-alias gl='git pull'
+alias gc='git commit -m'
+alias gph='git push'
+alias gpl='git pull'
 alias glo='git log --oneline --graph --decorate'
 
 # 比較ツール
-alias diffs='diff --color=auto -y --suppress-common-lines -W 150'
-alias diffdir='diff -qr'
-alias pdfv='diff-pdf --view'
-alias yzf='run_yz3_sample.sh &'
+alias difs='diff --color=auto -y --suppress-common-lines -W 150'
+alias difdir='diff -qr'
+alias difpdf='diff-pdf --view'
+
+# パッケージのインストール
+alias pacs='pacman -Ss'       # 検索
+alias paci='pacman -Si'       # 情報表示
+alias pac='sudo pacman -S'    # インストール
+alias pacr='sudo pacman -Rs'  # 削除
+alias pacu='sudo pacman -Syu' # システム更新
+
+# キャッシュと不要パッケージの整理
+alias pacc='sudo pacman -Scc'     # キャッシュをクリア
+alias paclo='pacman -Qdt'         # 不要な依存パッケージを表示
+alias pacro='sudo pacman -Rns $(pacman -Qtdq)' # 不要な依存パッケージを削除
+
 # ==========================================================
 # 5. 関数 (Emacs連携など)
 # ==========================================================

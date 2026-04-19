@@ -30,26 +30,26 @@
                 (lambda (frame)
                   (with-selected-frame frame
                     (init-loader-load "~/.emacs.d/init"))))
+    (setq init-loader-show-log-after-init nil) ; ログを表示しない設定
     ;; 通常起動の場合は即座にロード
     (init-loader-load "~/.emacs.d/init")))
-
 ;;----------------------------------------------------------------------
 ;; server / emacsclient 設定
 ;;----------------------------------------------------------------------
 
-(require 'server)
-;; すでにサーバーが動いていない場合のみ起動
-(unless (server-running-p)
-  (server-start))
+;; (require 'server)
+;; ;; すでにサーバーが動いていない場合のみ起動
+;; (unless (server-running-p)
+;;   (server-start))
 
-;; 編集終了時にフレームをアイコン化する設定（元の設定を維持）
-(defun iconify-emacs-when-server-is-done ()
-  (unless server-clients (iconify-frame)))
+;; ;; 編集終了時にフレームをアイコン化する設定（元の設定を維持）
+;; (defun iconify-emacs-when-server-is-done ()
+;;   (unless server-clients (iconify-frame)))
 
-(add-hook 'server-done-hook 'iconify-emacs-when-server-is-done)
+;; (add-hook 'server-done-hook 'iconify-emacs-when-server-is-done)
 
 ;; C-x C-c で Emacs を終了させず、サーバー編集終了（clientを閉じる）にする
-;;(global-set-key (kbd "C-x C-c") 'server-edit)
+;; (global-set-key (kbd "C-x C-c") 'server-edit)
 
 ;;----------------------------------------------------------------------
 ;; Custom-file 設定

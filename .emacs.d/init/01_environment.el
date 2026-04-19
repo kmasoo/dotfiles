@@ -3,8 +3,8 @@
 ;; ==========================================================
 ;; スタートアップページを表示しない
 (setq inhibit-startup-screen t)
-(setq inhibit-startup-message t)
-(setq inhibit-startup-echo-area-message t)
+;; (setq inhibit-startup-message t)
+;; (setq inhibit-startup-echo-area-message t)
 
 ;; ビープ音を出さなくする
 (setq visible-bell t)

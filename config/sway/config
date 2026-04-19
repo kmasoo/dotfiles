@@ -10,10 +10,8 @@ set $up k
 set $right l
 
 # デフォルトアプリ
-#set $term alacritty -e tmux
 # すでに tmux 用の Alacritty があればフォーカス、なければ起動
 set $term [app_id="Alacritty" title="tmux"] focus || exec alacritty -T tmux -e tmux new-session -A -s main
-#set $term tmux
 set $menu rofi -show drun -show-icons
 set $filemanager thunar
 set $lock swaylock
@@ -43,7 +41,7 @@ bar {
     swaybar_command waybar
 }
 
-exec_always swaync 
+exec_always swaync
 
 # ==========================================================
 # 4. ウィンドウ操作 (Vimキー & 矢印キーの両方に対応)
@@ -55,7 +53,7 @@ bindsym $mod+$left focus left
 bindsym $mod+$down focus down
 bindsym $mod+$up focus up
 bindsym $mod+$right focus right
-# 矢印キースタイル 
+# 矢印キースタイル
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
@@ -86,6 +84,17 @@ bindsym $mod+t exec $term
 bindsym $mod+f exec $filemanager
 bindsym $mod+r exec $menu
 bindsym $mod+q kill
+bindsym $mod+Ctrl+r exec /home/masoo/.config/sway/scripts/rofi/theme-picker.sh
+
+# Emacsのウィンドウがあればフォーカス、なければ emacsclient を起動
+# bindsym $mod+e [class="Emacs"] focus || exec emacsclient -c -a ""
+# 1. 起動コマンド自体はシンプルにする
+# bindsym $mod+e exec emacsclient -c -a ""
+
+# 2. Emacsのウィンドウが現れた時の挙動を強制する (二重起動防止の代わり)
+# 既にEmacsがある場合は、新しいウィンドウを作らずに既存の場所へ移動させる
+# for_window [class="Emacs"] focus
+
 
 # スクリーンショット
 bindsym $mod+Print exec grim
@@ -98,7 +107,7 @@ bindsym $mod+Shift+Print exec grim -g "$(slurp)"
 bindsym $mod+Shift+c reload
 
 # 緊急終了用 (Mod4不調対策)
-bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit Sway?' -b 'Yes' 'swaymsg exit'
+bindsym $mod+Shift+e exec swaymsg -t warning -m 'Exit Sway?' -b 'Yes' 'swaymsg exit'
 
 # リサイズモード
 mode "resize" {
@@ -121,14 +130,14 @@ bindsym $mod+Shift+r mode "resize"
 exec swayidle -w timeout 1800 "$lock"
 
 # 環境変数をインポートしてからデーモンを起動
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-exec emacs --daemon
+# exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+# exec emacs --daemon
 
 #
 assign [app_id="firefox"] workspace number 2
 assign [app_id="chromium"] workspace number 2
-assign [class="emacs"] workspace number 2
+assign [class="Emacs"] workspace number 2
 
 # パス設定
-include $HOME/.config/sway/themes/gruvbox-material-dark/sway/config-gruvbox-material-dark
+include /home/masoo/.config/sway/themes/nord/sway/config-nord
 include /etc/sway/config.d/*
