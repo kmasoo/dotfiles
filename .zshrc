@@ -62,7 +62,10 @@ bindkey "^[[F" end-of-line       # Endキー
 # 4. エイリアス (Git短縮コマンド含む)
 # ==========================================================
 alias ls='ls --color=auto'
-alias ll='ls -alF'
+#alias ll='ls -alF'
+alias ll='ls -alh --color=auto'
+alias la='ls -lah --color=auto'
+
 alias grep='grep --color=auto'
 alias rm='rm -i'
 alias cp='cp -i'
@@ -95,6 +98,9 @@ alias pacu='sudo pacman -Syu' # システム更新
 alias pacc='sudo pacman -Scc'     # キャッシュをクリア
 alias paclo='pacman -Qdt'         # 不要な依存パッケージを表示
 alias pacro='sudo pacman -Rns $(pacman -Qtdq)' # 不要な依存パッケージを削除
+
+export LESS='-R'
+
 
 # ==========================================================
 # 5. 関数 (Emacs連携など)

@@ -10,7 +10,7 @@
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t)       ;; 最近開いたファイルを候補に含める
   (setq enable-recursive-minibuffers t)  ;; ミニバッファ内での再帰呼び出しを許可
-  (setq ivy-height 30)                   ;; ミニバッファの高さを拡大
+  (setq ivy-height 15)                   ;; ミニバッファの高さを拡大
   (setq ivy-extra-directories nil)       ;; ./ ../ を候補から除外
   (setq ivy-re-builders-alist '((t . ivy--regex-plus)))
   (setq ivy-wrap t)                      ;; 候補の末尾で最初に戻る
