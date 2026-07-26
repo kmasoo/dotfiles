@@ -1,5 +1,4 @@
 conky.config = {
-
 -- -------------------- Conky's Run Time Parameters -------------------- #
 
 	update_interval = 2.0,-- Conky update interval in seconds
